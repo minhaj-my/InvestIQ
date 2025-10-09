@@ -2,17 +2,18 @@ import Link from "next/link";
 import Image from "next/image";
 import NavItems from "./NavItems";
 import UserDropdown from "./userDropdown";
-
-const Header = ({ user }: { user: User }) => {
+import { searchStocks } from "@/lib/actions/finnhub.actions";
+const Header = async ({ user }: { user: User }) => {
+  const initialStocks = await searchStocks();
   return (
     <header className="sticky top-0 header">
       <div className="container header-wrapper flex items-center justify-between">
         <Link href="/">
           <Image
             src="/assets/icons/logo.png"
-            alt="InvestIQ logo "
+            alt="InvestIQ Logo"
             width={120} // reasonable width
-            height={40} // reasonable height
+            height={30} // reasonable height
             className="h-auto w-auto cursor-pointer"
           />
         </Link>
@@ -20,8 +21,7 @@ const Header = ({ user }: { user: User }) => {
           <NavItems />
         </nav>
         {/* UserDropdown */}
-
-        <UserDropdown user={user} />
+        <UserDropdown user={user} inititalStocks={initialStocks} />
       </div>
     </header>
   );
