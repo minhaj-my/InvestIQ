@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import NavItems from "./NavItems";
 import UserDropdown from "./userDropdown";
+
 const Header = async ({ user }: { user: User }) => {
   return (
     <header className="sticky top-0 header">
@@ -16,7 +17,7 @@ const Header = async ({ user }: { user: User }) => {
           />
         </Link>
         <nav className="hidden sm:block">
-          <NavItems />
+          <NavItems initialStocks={[]} />
         </nav>
         {/* UserDropdown */}
         <UserDropdown user={user} />
