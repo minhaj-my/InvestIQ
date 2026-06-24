@@ -110,6 +110,32 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  /* TV widget dark values — no light-dark() needed, already in .dark */
+  --tv-widget-hover-background-color: #141313;
+  --tv-widget-tooltip-background-color: #e6e4e3;
+  --tv-widget-tooltip-text-color: #2d2c2a;
+  --tv-widget-button-quiet-color-hover: #2d2c2a;
+  --tv-widget-button-quiet-color-active: #3b3936;
+  --tv-widget-button-disabled-color: #3b3936;
+  --tv-widget-button-disabled-text-color: #585450;
+  --tv-widget-negative-color: rgba(144, 191, 249, 1);
+  --tv-widget-negative-area-top-color: rgba(144, 191, 249, 0.4);
+  --tv-widget-negative-area-bottom-color: rgba(144, 191, 249, 0.1);
+  --tv-widget-scales-font-color: #cdcac8;
+  --tv-widget-attribution-border-color: #201f1e;
+  --tv-widget-border-color: #201f1e;
+  --tv-widget-selected-border-color: #9d9893;
+  --tv-widget-scale-fill-two: #41443c;
+  --tv-widget-scale-fill-three: #4c6562;
+  --tv-widget-scale-fill-four: #52878a;
+  --tv-widget-scale-fill-five: #53abb5;
+  --tv-widget-scale-fill-six: rgba(77, 208, 225, 1);
+  --tv-widget-map-empty-fill: #2d2c2a;
+  --tv-widget-rating-gauge-negative-color: rgba(144, 191, 249, 1);
+  --tv-widget-rating-gauge-mid-color: #6b90fd;
+  --tv-widget-rating-gauge-track-color: #2d2c2a;
+  --tv-widget-scrollbar-color: #67625e;
 }
 
 /* === CUSTOM COLOR THEME === */
@@ -118,18 +144,18 @@
   --color-gray-900: #050505;
   --color-gray-800: #141414;
   --color-gray-700: #212328;
-  --color-gray-600: #30333A;
-  --color-gray-500: #9095A1;
-  --color-gray-400: #CCDADC;
+  --color-gray-600: #30333a;
+  --color-gray-500: #9095a1;
+  --color-gray-400: #ccdadc;
 
   /* Vibrant Colors */
-  --color-blue-600: #5862FF;
-  --color-yellow-400: #FDD458;
-  --color-yellow-500: #E8BA40;
-  --color-teal-400: #0FEDBE;
-  --color-red-500: #FF495B;
-  --color-orange-500: #FF8243;
-  --color-purple-500: #D13BFF;
+  --color-blue-600: #5862ff;
+  --color-yellow-400: #fdd458;
+  --color-yellow-500: #e8ba40;
+  --color-teal-400: #0fedbe;
+  --color-red-500: #ff495b;
+  --color-orange-500: #ff8243;
+  --color-purple-500: #d13bff;
 }
 
 @layer base {
@@ -146,7 +172,8 @@
     @apply mx-auto max-w-screen-2xl px-4 md:px-6 lg:px-8;
   }
   .yellow-btn {
-    @apply h-12 cursor-pointer bg-gradient-to-b from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-400 text-gray-950 font-medium text-base rounded-lg shadow-lg disabled:opacity-50;
+    @apply h-12 cursor-pointer bg-gradient-to-b from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-400
+    text-gray-950 font-medium text-base rounded-lg shadow-lg disabled:opacity-50;
   }
   .home-wrapper {
     @apply text-gray-400 flex-col gap-4 md:gap-10 items-center sm:items-start;
@@ -155,22 +182,19 @@
     @apply w-full gap-8 grid-cols-1 md:grid-cols-2 xl:grid-cols-3;
   }
   .header {
-    @apply z-50 w-full h-[70px] bg-gray-800;
+    @apply z-50 w-full h-[80px] bg-gray-800;
   }
   .header-wrapper {
-    @apply flex justify-between items-center px-6 py-4 text-gray-500;
+    @apply flex justify-between items-center px-6 py-2 text-gray-500;
   }
   .auth-layout {
     @apply flex flex-col justify-between lg:flex-row h-screen bg-gray-900 relative overflow-hidden;
-  }
-  .auth-logo {
-    @apply pt-6 lg:pt-8 mb-8 lg:mb-12;
   }
   .auth-left-section {
     @apply w-full lg:w-[45%] lg:h-screen px-6 lg:px-16 flex flex-col overflow-y-auto;
   }
   .auth-right-section {
-    @apply w-full max-lg:border-t max-lg:border-gray-600 lg:w-[55%] lg:h-screen bg-gray-800 px-6 py-4 md:p-6 lg:py-12 lg:px-18 flex flex-col justify-start;
+    @apply w-full max-lg:border-t max-lg:border-gray-600 lg:w-[55%] lg:h-screen bg-gray-800 px-2 py-2 md:p-6 lg:py-12 lg:px-18 flex flex-col justify-start;
   }
   .auth-blockquote {
     @apply text-sm md:text-xl lg:text-2xl font-medium text-gray-400 mb-1 md:mb-6 lg:mb-8;
@@ -179,22 +203,26 @@
     @apply text-xs md:text-lg font-bold text-gray-400 not-italic;
   }
   .auth-dashboard-preview {
-    @apply border-6 border-gray-800 left-0 hidden w-[1024px] h-auto max-w-none lg:block rounded-xl shadow-2xl;
+    @apply border-6 border-gray-800 left-0 hidden h-auto max-w-none lg:block rounded-xl shadow-2xl;
   }
   .form-title {
-    @apply text-4xl font-bold text-gray-400 mb-10;
+    @apply text-2xl font-bold text-center;
+    background: linear-gradient(to right, #fff, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .form-label {
     @apply text-sm font-medium text-gray-400;
   }
   .form-input {
-    @apply h-12 px-3 py-3 text-white text-base placeholder:text-gray-500 border-gray-600 bg-gray-800 rounded-lg focus:!border-yellow-500 focus:ring-0;
+    @apply h-12 px-3 py-3 text-white text-base placeholder:text-gray-500 border-gray-600 bg-gray-800 rounded-lg focus:!border-blue-500 focus:ring-0;
   }
   .select-trigger {
-    @apply w-full !h-12 px-3 py-3 text-base border-gray-600 bg-gray-800 text-white rounded-lg focus:!border-yellow-500 focus:ring-0;
+    @apply w-full !h-12 px-3 py-3 text-base border-gray-600 bg-gray-800 text-white rounded-lg focus:!border-blue-500 focus:ring-0;
   }
   .country-select-trigger {
-    @apply h-12 px-3 py-3 text-base w-full justify-between font-normal border-gray-600 bg-gray-800 text-gray-400 rounded-lg focus:!border-yellow-500 focus:ring-0;
+    @apply h-12 px-3 py-3 text-base w-full justify-between font-normal border-gray-600 bg-gray-800 text-gray-400 rounded-lg focus:!border-blue-500 focus:ring-0;
   }
   .country-select-input {
     @apply !bg-gray-800 text-gray-400 border-0 border-b border-gray-600 rounded-none focus:ring-0 placeholder:text-gray-500;
@@ -206,13 +234,13 @@
     @apply text-white cursor-pointer px-3 py-2 rounded-sm bg-gray-800 hover:!bg-gray-600;
   }
   .footer-link {
-    @apply text-gray-400 font-medium hover:text-yellow-400 hover:underline transition-colors;
+    @apply text-gray-400 font-medium hover:text-blue-400 hover:underline transition-colors;
   }
   .search-text {
-    @apply cursor-pointer hover:text-yellow-500;
+    @apply cursor-pointer hover:text-blue-400;
   }
   .search-btn {
-    @apply cursor-pointer px-4 py-2 w-fit flex items-center gap-2 text-sm md:text-base bg-yellow-500 hover:bg-yellow-500 text-black font-medium rounded;
+    @apply cursor-pointer px-4 py-2 w-fit flex items-center gap-2 text-sm md:text-base bg-blue-500 hover:bg-blue-400 text-black font-medium rounded;
   }
   .search-dialog {
     @apply !bg-gray-800 lg:min-w-[800px] border-gray-600 fixed top-10 left-1/2 -translate-x-1/2 translate-y-10;
@@ -224,7 +252,7 @@
     @apply !bg-gray-800 max-h-[400px];
   }
   .search-list-indicator {
-    @apply px-5 py-2
+    @apply px-5 py-2;
   }
   .search-list-empty {
     @apply py-6 !bg-transparent text-center text-gray-500;
@@ -254,10 +282,12 @@
     @apply w-full grid-cols-1 gap-6 xl:grid-cols-3 space-y-6 sm:space-y-8;
   }
   .watchlist-btn {
-    @apply bg-yellow-500 text-base hover:bg-yellow-500 text-gray-900 w-full rounded h-11 font-semibold cursor-pointer;
+    @apply w-full rounded h-11 font-semibold cursor-pointer
+       bg-gradient-to-b from-blue-400 to-blue-500 hover:from-blue-500 hover:to-blue-400
+    text-gray-950  text-base  shadow-lg disabled:opacity-50;
   }
   .watchlist-remove {
-    @apply bg-red-500! hover:bg-red-500! text-gray-900!
+    @apply bg-red-500! hover:bg-red-500! text-gray-900!;
   }
   .watchlist-empty-container {
     @apply container gap-8 flex-col items-center md:mt-10 p-6 text-center;
@@ -314,7 +344,7 @@
     @apply border-b cursor-pointer text-gray-100 border-gray-600 hover:bg-gray-700/50 transition-colors;
   }
   .table-cell {
-    @apply font-medium text-base
+    @apply font-medium text-base;
   }
   .add-alert {
     @apply flex text-sm items-center whitespace-nowrap gap-1.5 px-3 w-fit py-2 text-yellow-600 border border-yellow-600/20 rounded font-medium bg-transparent hover:bg-transparent cursor-pointer transition-colors;
@@ -403,7 +433,6 @@
 .tradingview-widget-container__widget {
   background-color: #141414 !important;
   height: 100% !important;
-
 }
 
 .widget-stock-heatmap-container .screenerMapWrapper-BBVfGP0b {
@@ -451,7 +480,7 @@
 }
 
 .custom-chart.tradingview-widget-container iframe {
-  border: 1px solid #30333A;
+  border: 1px solid #30333a;
   border-radius: 8px !important;
   overflow: hidden !important;
 }
@@ -477,15 +506,15 @@
 }
 
 .scrollbar-hide-default:hover {
-  scrollbar-color: #30333A transparent;
+  scrollbar-color: #30333a transparent;
 }
 
 .scrollbar-hide-default:hover::-webkit-scrollbar-thumb {
-  background-color: #30333A;
+  background-color: #30333a;
 }
 
 .scrollbar-hide-default::-webkit-scrollbar-thumb:hover {
-  background-color: #9095A1;
+  background-color: #9095a1;
 }
 
 @layer base {

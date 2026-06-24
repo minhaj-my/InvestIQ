@@ -13,7 +13,9 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 import NavItems from "@/components/NavItems";
+import { searchStocks } from "@/lib/actions/finnhub.actions";
 
+const initialStocks = await searchStocks();
 const UserDropdown = ({ user }: { user: User }) => {
   const router = useRouter();
 
@@ -68,7 +70,7 @@ const UserDropdown = ({ user }: { user: User }) => {
         </DropdownMenuItem>
         <DropdownMenuSeparator className="hidden sm:block bg-gray-600" />
         <nav className="sm:hidden">
-          <NavItems />
+          <NavItems initialStocks={initialStocks} />
         </nav>
       </DropdownMenuContent>
     </DropdownMenu>

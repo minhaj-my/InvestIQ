@@ -12,17 +12,59 @@ import { Loader2, TrendingUp } from "lucide-react";
 import Link from "next/link";
 import { searchStocks } from "@/lib/actions/finnhub.actions";
 import { useDebounce } from "@/hooks/useDebounce";
+import { SearchCommandProps, StockWithWatchlistStatus } from "@/types/global"; // Adjust import path
+
+const POPULAR_STOCKS: StockWithWatchlistStatus[] = [
+  {
+    symbol: "AAPL",
+    name: "Apple Inc.",
+    exchange: "NASDAQ",
+    type: "Common Stock",
+  },
+  {
+    symbol: "MSFT",
+    name: "Microsoft Corp.",
+    exchange: "NASDAQ",
+    type: "Common Stock",
+  },
+  {
+    symbol: "GOOGL",
+    name: "Alphabet Inc.",
+    exchange: "NASDAQ",
+    type: "Common Stock",
+  },
+  {
+    symbol: "NVDA",
+    name: "NVIDIA Corp.",
+    exchange: "NASDAQ",
+    type: "Common Stock",
+  },
+  {
+    symbol: "TSLA",
+    name: "Tesla Inc.",
+    exchange: "NASDAQ",
+    type: "Common Stock",
+  },
+  {
+    symbol: "META",
+    name: "Meta Platforms",
+    exchange: "NASDAQ",
+    type: "Common Stock",
+  },
+];
 
 export default function SearchCommand({
   renderAs = "button",
   label = "Add stock",
   initialStocks,
 }: SearchCommandProps) {
+  const defaultStocks = initialStocks?.length ? initialStocks : POPULAR_STOCKS;
+
   const [open, setOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [stocks, setStocks] =
-    useState<StockWithWatchlistStatus[]>(initialStocks);
+    useState<StockWithWatchlistStatus[]>(defaultStocks);
 
   const isSearchMode = !!searchTerm.trim();
   const displayStocks = isSearchMode ? stocks : stocks?.slice(0, 10);
@@ -39,7 +81,7 @@ export default function SearchCommand({
   }, []);
 
   const handleSearch = async () => {
-    if (!isSearchMode) return setStocks(initialStocks);
+    if (!isSearchMode) return setStocks(defaultStocks);
 
     setLoading(true);
     try {
@@ -61,7 +103,7 @@ export default function SearchCommand({
   const handleSelectStock = () => {
     setOpen(false);
     setSearchTerm("");
-    setStocks(initialStocks);
+    setStocks(defaultStocks);
   };
 
   return (
@@ -78,14 +120,14 @@ export default function SearchCommand({
       <CommandDialog
         open={open}
         onOpenChange={setOpen}
-        className="search-dialog"
+        className="search-dialog  "
       >
         <div className="search-field">
           <CommandInput
             value={searchTerm}
             onValueChange={setSearchTerm}
             placeholder="Search stocks..."
-            className="search-input"
+            className="search-input scrollbar-hide "
           />
           {loading && <Loader2 className="search-loader" />}
         </div>
@@ -105,7 +147,7 @@ export default function SearchCommand({
                 {` `}({displayStocks?.length || 0})
               </div>
               {displayStocks?.map((stock, i) => (
-                <li key={stock.symbol} className="search-item">
+                <li key={`${stock.symbol}-${i}`} className="search-item">
                   <Link
                     href={`/stocks/${stock.symbol}`}
                     onClick={handleSelectStock}
@@ -118,7 +160,6 @@ export default function SearchCommand({
                         {stock.symbol} | {stock.exchange} | {stock.type}
                       </div>
                     </div>
-                    {/*<Star />*/}
                   </Link>
                 </li>
               ))}

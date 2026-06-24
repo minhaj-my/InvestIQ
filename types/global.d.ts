@@ -1,3 +1,16 @@
+export interface StockWithWatchlistStatus {
+  symbol: string;
+  name: string;
+  exchange: string;
+  type: string;
+}
+
+export interface SearchCommandProps {
+  renderAs?: "button" | "text";
+  label?: string;
+  initialStocks?: StockWithWatchlistStatus[];
+}
+
 declare global {
   type SignInFormData = {
     email: string;
@@ -215,6 +228,15 @@ declare global {
     threshold: number;
     changePercent?: number;
   };
+
+  namespace JSX {
+    interface IntrinsicElements {
+      "tv-market-summary": React.HTMLAttributes<HTMLElement> & {
+        direction?: string;
+        colorTheme?: string;
+      };
+    }
+  }
 }
 
 export {};

@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 const layout = async ({ children }: { children: React.ReactNode }) => {
   const session = await auth.api.getSession({ headers: await headers() });
 
-  if (!session?.user) redirect("/sign-in");
+  if (!session?.user) redirect("/sign-up");
 
   const user = {
     id: session.user.id,
@@ -15,6 +15,9 @@ const layout = async ({ children }: { children: React.ReactNode }) => {
   };
   return (
     <main className="min-h-screen text-gray-400">
+      {/* @ts-ignore 
+
+      */}{" "}
       <Header user={user} />
       <div className="container py-10">{children}</div>
     </main>

@@ -138,9 +138,6 @@ export const CountrySelectField = ({
         )}
       />
       {error && <p className="text-sm text-red-500">{error.message}</p>}
-      <p className="text-xs text-gray-500">
-        Helps us show market data and news relevant to you.
-      </p>
     </div>
   );
 };
