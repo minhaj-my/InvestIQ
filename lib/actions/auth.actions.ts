@@ -1,7 +1,6 @@
 "use server";
 
 import { auth } from "@/lib/better-auth/auth";
-import { inngest } from "@/lib/inngest/client";
 import { headers } from "next/headers";
 
 export const signUpWithEmail = async ({
@@ -15,19 +14,6 @@ export const signUpWithEmail = async ({
     const response = await auth.api.signUpEmail({
       body: { email, password, name: fullName },
     });
-
-    if (response) {
-      await inngest.send({
-        name: "app/user.created",
-        data: {
-          email,
-          name: fullName,
-          country,
-          investmentGoals,
-        },
-      });
-    }
-
     return { success: true, data: response };
   } catch (e) {
     console.log("Sign up failed", e);
