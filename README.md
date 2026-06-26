@@ -1,60 +1,37 @@
  <div align="center">
     <img src="public/assets/icons/logo1.png" width="300"/>
   </div>
-   <div align="center">
-  <img src="public/assets/images/1.png" alt="Investiq Screenshot" width="400"/>
-</div>
+  
+## InvestIQ uses to access real-time market data via **Finnhub** API and **TradingView**.
+
 
   <div align="center">
-  <img src="https://skillicons.dev/icons?i=nextjs,mongodb,tailwind,ts" />
+  <img src="public/assets/images/show.png" alt="Investiq Screenshot" width="500"/>
   </div>
-# InvestIQ
+  
+ 
+<div/>
+ 
+  <img src="https://readme-typing-svg.demolab.com?font=Noto+Serif&size=28&pause=1000&width=435&lines=InvestIQ+is+a+modern+investment+tracking;application+built+with+Next.js;and+Node.js+It+enables+users;to+track+investments;access+real-time+market+data" alt="Typing SVG" />
+ 
 
-# **Investiq** is a modern investment tracking application built with **Next.js, TypeScript, React, and Node.js**. It enables users to track multiple investments, manage watchlists, and access real-time market data via **Finnhub** API and **TradingView** Widgets.
-
-# Features:**
-
+### Features:
 - User authentication  
 - Real-time stock, crypto, and market data
 - Analytics dashboards and charts
 - Modular, component-driven architecture
-- **3. Installation & Setup**
-
-### **Requirements**
-
-- Node.js >= 18
-  
-- npm >= 9
-  
-- MongoDB (or another supported DB)
-  
-- Optional: Inngest account & API key
-  
-
-### **Steps**
-
+## **3. Installation & Setup**
 1. Clone the repository:
-   
-
 `git clone https://github.com/yourusername/investiq.git cd investiq`
 
 2. Install dependencies:
-   
-
 `bun install`
-
 3. Configure environment variables:
    
-
-4.  Run the development server:
-   
-
+4.  Run the development server: 
 `bun run dev`
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
-   
-
----
 
 ## **4. Environment Variables**
 ```
@@ -75,48 +52,21 @@ GOOGLE_CLIENT_SECRET=
 
 GITHUB_CLIENT_ID= 
 GITHUB_CLIENT_SECRET=
-
 ```
 
-### ** Notes**
-
-###   -  Model: `database/models/watchlist.model.ts`
-
-- Actions: `lib/actions/watchlist.actions.ts`
-
-- API integration: `lib/actions/finnhub.actions.ts`
+  <div align="center">
+  <img src="public/assets/images/mobile.png" alt="Investiq Screenshot" width="600"/>
+  </div>
+  <div align="center">
+  <img src="https://skillicons.dev/icons?i=nextjs,mongodb,tailwind,ts" />
+  </div>
   
-- Charts: `components/TradingView.tsx`
-  
-- Users can view real-time prices and historical trends.
-  
-
----
-
 ## **7. Contributing**
-
 1. Fork the repo
-   
-2. Create a branch:
-   
-
-`git checkout -b feature/your-feature`
-
-3. Make changes and commit:
-   
-
-`git commit -m "Add your feature description"`
-
-4. Push and create a Pull Request
-   
-
-**Coding standards:**
-
-- Use TypeScript
-- Follow component structure in `components/`
-
----
-
+2. Make changes and commit:
+3. Push and create a Pull Request
 ##  **9. License**
+
+  
 
 MIT License © 2025 Investiq
